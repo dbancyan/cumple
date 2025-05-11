@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Cumpleaños Mamá Mayra</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>¡Feliz Cumpleaños Mamá Mayra!</h1>
+            <div class="subtitle">Con todo mi amor, Danny</div>
+        </header>
+        
+        <div class="menu">
+            <div class="menu-item active" data-section="bienvenida">Bienvenida</div>
+            <div class="menu-item" data-section="fotos">Fotos</div>
+            <div class="menu-item" data-section="mensaje">Mensaje</div>
+            <div class="menu-item" data-section="regalos">Sorpresas</div>
+        </div>
+        
+        <div id="bienvenida" class="content-section active">
+            <h2>¡Feliz día especial!</h2>
+            <p>Querida mamá Mayra,</p>
+            <p>He creado este pequeño espacio digital para celebrar tu cumpleaños y expresar todo el amor que siento por ti. Navega por las diferentes secciones para descubrir fotos, recuerdos y sorpresas que he preparado especialmente para este día.</p>
+            <p>Cada botón en la parte superior te llevará a diferentes secciones llenas de momentos especiales que hemos compartido.</p>
+            
+            <div class="countdown" id="countdown">
+                Faltan: 00:00:00
+            </div>
+        </div>
+        
+        <div id="fotos" class="content-section">
+            <h2>Nuestras fotos especiales</h2>
+            <p>Una colección de momentos que hemos compartido juntos. Haz clic en cualquier imagen para verla más grande.</p>
+            
+            <div class="photo-gallery">
+                <div class="photo-container">
+                    <img src="images/img01.jpg" alt="Foto con mamá Mayra 1" />
+                </div>
+                <div class="photo-container">
+                    <img src="images/img02.jpg" alt="Foto con mamá Mayra 2" />
+                </div>
+                <div class="photo-container">
+                    <img src="images/img03.jpg" alt="Foto con mamá Mayra 3" />
+                </div>
+                <div class="photo-container">
+                    <img src="images/img04.jpg" alt="Foto con mamá Mayra 4" />
+                </div>
+                <div class="photo-container">
+                    <img src="images/img05.jpg" alt="Foto con mamá Mayra 5" />
+                </div>
+                <div class="photo-container">
+                    <img src="images/img06.jpg" alt="Foto con mamá Mayra 6" />
+                </div>
+            </div>
+        </div>
+        
+        <!-- Se ha eliminado la sección de recuerdos -->
+        
+        <div id="mensaje" class="content-section">
+            <h2>Mi mensaje para ti</h2>
+            
+            <div class="message-container">
+                <p class="special-message">
+                    Querida mamá Mayra,<br><br>
+                    
+                    En este día tan especial, quiero decirte cuánto te amo y lo agradecido que estoy por tenerte en mi vida. Eres mi apoyo incondicional, mi inspiración y la persona que siempre ha estado ahí para mí en cada momento.<br><br>
+                    
+                    Gracias por tus consejos, por tu paciencia infinita, por enseñarme a ser fuerte y por mostrarme lo que significa amar de verdad. Cada día aprendo algo nuevo de ti.<br><br>
+                    
+                    Hoy celebramos tu vida, tu sonrisa y todo el amor que das sin esperar nada a cambio. Espero poder hacerte sentir tan especial como tú me haces sentir a mí todos los días.<br><br>
+                    
+                    Te deseo un cumpleaños maravilloso lleno de alegría y momentos que atesores para siempre. Que este nuevo año de vida venga cargado de bendiciones y nuevas oportunidades.<br><br>
+                    
+                    Con todo mi amor,<br>
+                    <span class="signature">Danny</span>
+                </p>
+            </div>
+        </div>
+        
+        <div id="regalos" class="content-section">
+            <h2>Mis promesas para ti</h2>
+            <p>He preparado estas promesas con mucho cariño. Haz clic en cada una para descubrir mi compromiso.</p>
+            
+            <div class="gift-item" data-gift="regalo1">
+                <div class="gift-icon">🎁</div>
+                <div class="gift-details">
+                    <div class="gift-title">Promesa #1</div>
+                    <div class="gift-description">Una promesa especial para ti, mamá...</div>
+                </div>
+            </div>
+            
+            <div class="gift-item" data-gift="regalo2">
+                <div class="gift-icon">🎁</div>
+                <div class="gift-details">
+                    <div class="gift-title">Promesa #2</div>
+                    <div class="gift-description">Algo que sé que te hará feliz...</div>
+                </div>
+            </div>
+            
+            <div class="gift-item" data-gift="regalo3">
+                <div class="gift-icon">🎁</div>
+                <div class="gift-details">
+                    <div class="gift-title">Promesa #3</div>
+                    <div class="gift-description">Un compromiso de corazón...</div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            Creado con mucho amor para el cumpleaños de Mamá Mayra | 2025
+        </footer>
+    </div>
+    
+    <div class="modal" id="photoModal">
+        <span class="close-modal">&times;</span>
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="Foto ampliada">
+        </div>
+    </div>
+    
+    <div class="modal" id="giftModal">
+        <span class="close-modal">&times;</span>
+        <div class="modal-content" id="giftContent">
+            <!-- El contenido del regalo se insertará aquí -->
+        </div>
+    </div>
+    
+    <button class="theme-toggle" id="themeToggle">🌙</button>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navegación entre secciones
+            const menuItems = document.querySelectorAll('.menu-item');
+            const sections = document.querySelectorAll('.content-section');
+            
+            menuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const targetSection = this.getAttribute('data-section');
+                    
+                    // Desactivar todas las secciones y menús
+                    menuItems.forEach(menuItem => menuItem.classList.remove('active'));
+                    sections.forEach(section => section.classList.remove('active'));
+                    
+                    // Activar la sección seleccionada
+                    this.classList.add('active');
+                    document.getElementById(targetSection).classList.add('active');
+                });
+            });
+            
+            // Funcionalidad de la galería de fotos
+            const photoContainers = document.querySelectorAll('.photo-container');
+            const photoModal = document.getElementById('photoModal');
+            const modalImage = document.getElementById('modalImage');
+            const closeModal = document.querySelectorAll('.close-modal');
+            
+            photoContainers.forEach(container => {
+                container.addEventListener('click', function() {
+                    const imgSrc = this.querySelector('img').src;
+                    modalImage.src = imgSrc;
+                    photoModal.style.display = 'flex';
+                });
+            });
+            
+            // Funcionalidad de regalos
+            const giftItems = document.querySelectorAll('.gift-item');
+            const giftModal = document.getElementById('giftModal');
+            const giftContent = document.getElementById('giftContent');
+            
+            const gifts = {
+                regalo1: {
+                    title: "Promesa de Madrugar",
+                    content: "<p>Mamá, te prometo que me levantaré temprano todos los días para ayudarte con las tareas matutinas y para que no tengas que estar apurada.</p><div style='text-align:center;font-size:3rem;margin:20px 0;'>⏰✨</div>"
+                },
+                regalo2: {
+                    title: "Más Abrazos Cada Día",
+                    content: "<p>Me comprometo a darte más abrazos cada día, porque sé lo mucho que te gustan y porque te mereces todo ese cariño.</p><div style='text-align:center;font-size:3rem;margin:20px 0;'>🤗💝</div>"
+                },
+                regalo3: {
+                    title: "Mi Mayor Esfuerzo",
+                    content: "<p>Te prometo seguir esforzándome al máximo en todo lo que hago, para que siempre estés orgullosa de mí, así como yo estoy orgulloso de tenerte como mi mamá.</p><div style='text-align:center;font-size:3rem;margin:20px 0;'>💪🌟</div>"
+                }
+            };
+            
+            giftItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const giftId = this.getAttribute('data-gift');
+                    const gift = gifts[giftId];
+                    
+                    giftContent.innerHTML = `
+                        <div style="background-color:#fff;padding:30px;border-radius:10px;max-width:500px;text-align:center;">
+                            <h2 style="color:#e84d8a;margin-top:0;">${gift.title}</h2>
+                            ${gift.content}
+                        </div>
+                    `;
+                    
+                    giftModal.style.display = 'flex';
+                });
+            });
+            
+            // Cerrar modales
+            closeModal.forEach(close => {
+                close.addEventListener('click', function() {
+                    photoModal.style.display = 'none';
+                    giftModal.style.display = 'none';
+                });
+            });
+            
+            // Cerrar modales al hacer clic fuera
+            window.addEventListener('click', function(event) {
+                if (event.target === photoModal) {
+                    photoModal.style.display = 'none';
+                }
+                if (event.target === giftModal) {
+                    giftModal.style.display = 'none';
+                }
+            });
+            
+            // Cambio de tema (modo oscuro/claro)
+            const themeToggle = document.getElementById('themeToggle');
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+                themeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+            });
+            
+            // Contador de tiempo
+            function updateCountdown() {
+                const now = new Date();
+                
+                // Aquí debes establecer la fecha del cumpleaños de tu mamá
+                // Formato: Año, Mes (0-11), Día, Hora, Minuto, Segundo
+                const birthday = new Date(now.getFullYear(), 4, 15, 0, 0, 0); // 15 de mayo
+                
+                // Si el cumpleaños ya pasó este año, usar el del próximo año
+                if (now > birthday) {
+                    birthday.setFullYear(birthday.getFullYear() + 1);
+                }
+                
+                const diff = birthday - now;
+                
+                if (diff <= 0) {
+                    document.getElementById('countdown').innerHTML = "¡Es hoy! ¡Feliz Cumpleaños!";
+                    return;
+                }
+                
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                
+                document.getElementById('countdown').innerHTML = `Faltan: ${days} días, ${hours}:${minutes}:${seconds}`;
+                
+                setTimeout(updateCountdown, 1000);
+            }
+            
+            updateCountdown();
+        });
+    </script>
+</body>
+</html>
